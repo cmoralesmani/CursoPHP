@@ -1,10 +1,17 @@
 <?php
 
-class Car{
-    private $owner = 'Mike';
+
+
+class Vehicle{
+    private $owner;
+
+    public function __construct($ownerName){
+        $this->owner = $ownerName;
+        echo 'construct<br>';
+    }
 
     public function move(){
-        echo 'moing<br>';
+        echo 'moving<br>';
     }
 
     public function getOwner(){
@@ -16,15 +23,32 @@ class Car{
     }
 }
 
+class Car extends Vehicle{
+    public function move(){
+        echo 'Car: moving<br>';
+    }
+}
+
+class Truck extends Vehicle{
+    private $type;
+
+    public function __construct($ownerName, $type){
+        $this->type = $type;
+        parent::__construct($ownerName);
+    }
+
+    public function move(){
+        echo 'Truck '.$this->type.': moving<br>';
+    }
+}
+
 echo 'Class Car<br>';
 
-$car = new Car();
-$car2 = new Car();
-
+$car = new Car('Alex');
 $car->move();
-$car->setOwner('Alex');
-$car2->setOwner('Max');
-
 echo 'Owner car: ' . $car->getOwner() . '<br>';
-echo 'Owner car2: ' . $car2->getOwner();
+
+$truck = new Truck('Max','Pickup');
+$truck->move();
+echo 'Owner truck: ' . $truck->getOwner();
 
