@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Blog with Platzi</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"
+          integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Blog Title</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8">
+           {% block content %}{% endblock %}
+        </div>
+        <div class="col-md-4">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis cumque deleniti enim error et explicabo
+            fugiat magni quisquam tempore voluptate! At debitis deserunt est incidunt necessitatibus nisi quod similique
+            voluptas!
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <footer>
+                This is a footer <br/>
+                <a href="{{ 'admin'|url }}">Admin Panel</a>
+            </footer>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

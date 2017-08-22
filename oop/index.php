@@ -1,54 +1,40 @@
 <?php
 
+include 'Vehicles/Car.php';
+include 'Vehicles/Truck.php';
+include 'Vehicles/ToyCar.php';
 
+use Vehicles\{Car,Truck,ToyCar};
 
-class Vehicle{
-    private $owner;
-
-    public function __construct($ownerName){
-        $this->owner = $ownerName;
-        echo 'construct<br>';
-    }
-
-    public function move(){
-        echo 'moving<br>';
-    }
-
-    public function getOwner(){
-        return $this->owner;
-    }
-
-    public function setOwner($owner){
-        $this->owner = $owner;
-    }
-}
-
-class Car extends Vehicle{
-    public function move(){
-        echo 'Car: moving<br>';
-    }
-}
-
-class Truck extends Vehicle{
-    private $type;
-
-    public function __construct($ownerName, $type){
-        $this->type = $type;
-        parent::__construct($ownerName);
-    }
-
-    public function move(){
-        echo 'Truck '.$this->type.': moving<br>';
-    }
+try {
+    echo 'Class ToyCar<br>';
+    $toyCar = new ToyCar('Alex');
+    $toyCar->move();
+} catch (Exception $e) {
+    echo 'This is a toy<br><br>';
+    // log...
+} finally {
+    echo 'finally<br><br>';
 }
 
 echo 'Class Car<br>';
-
 $car = new Car('Alex');
 $car->move();
-echo 'Owner car: ' . $car->getOwner() . '<br>';
+echo 'GPS pos: ' . $car->getPos();
+//echo 'Owner car: ' . $car->getOwner() . '<br>';
 
-$truck = new Truck('Max','Pickup');
+echo 'Class truck 1<br>';
+$truck = new Truck('Max', 'Pickup');
 $truck->move();
-echo 'Owner truck: ' . $truck->getOwner();
+//echo 'Owner truck: ' . $truck->getOwner();
 
+echo 'Class truck 2<br>';
+$truck = new Truck('Max', 'Pickup');
+$truck->move();
+
+echo '<br>Total Trucks: ' . Truck::getTotal() . '<br>';
+
+$ser = serialize($car);
+$newCar = unserialize($ser);
+
+echo 'NewCar Owner: ' . $newCar->getOwner() . '<br>';
